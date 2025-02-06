@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/Components/Sidebar";
 import SupabaseProvider from "@/providers/SupabaseProvider";
+import UserProvider from "@/providers/UserProvider";
+import ModalProvider from "@/providers/ModalProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,9 +31,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <SupabaseProvider  >
-          <Sidebar>
-              {children}
-          </Sidebar>
+          <UserProvider>
+              <ModalProvider/>
+              <Sidebar>
+                  {children}
+              </Sidebar>
+          </UserProvider>
       </SupabaseProvider>
 
       </body>
