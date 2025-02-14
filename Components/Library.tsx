@@ -8,6 +8,7 @@ import {Song} from "@/types";
 import React from "react";
 import MediaItem from "@/Components/MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
+import LikeButton from "@/Components/LikeButton";
 
 
 interface LibraryProps {
@@ -69,11 +70,13 @@ const Library:React.FC<LibraryProps> = (
             </div>
             <div className={'flex flex-col gap-y-2 mt-7 px-3 text-white'}>
                 {songs.map((song) => (
-                    <MediaItem
-                        onClick={(id: string) => onPlay(id)}
+                    <div key={song.id} className={`flex items-center justify-between`}>
+                    <MediaItem onClick={(id: string) => onPlay(id)}
                         key={song.id}
                         data={song}
-                    />
+                        />
+                        <LikeButton songID={song.id}/>
+                    </div>
                 ))}
             </div>
         </div>
