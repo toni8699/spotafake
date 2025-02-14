@@ -1,0 +1,123 @@
+"use client"
+
+import {Song} from "@/types";
+import {useRouter} from "next/navigation";
+import {twMerge} from "tailwind-merge";
+import MediaItem from "@/Components/MediaItem";
+import LikeButton from "@/Components/LikeButton";
+import {BsPlayFill, BsPauseFill} from "react-icons/bs"
+import LikedContent from "@/app/liked/Components/LikedContent";
+import {AiFillStepBackward, AiFillStepForward} from "react-icons/ai";
+import {HiSpeakerXMark, HiSpeakerWave} from "react-icons/hi2";
+import MySlider from "@/Components/MySlider";
+import usePlayer from "@/hooks/usePlayer";
+import {useEffect, useState} from "react";
+import useSound from "use-sound";
+
+interface PlayerContentProps {
+    song: Song;
+    songUrl: string;
+}
+const PlayerContent: React.FC<PlayerContentProps> = ({
+    song,
+    songUrl,
+}) => {
+    const router = useRouter();
+    // const handleClick = () => {
+    //     router.push(`/songs/${song.id}`)
+    // }
+    const Player =usePlayer();
+    const [volume, setVolume] = useState(1);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const VolumeIcon =volume=== 0 ? HiSpeakerXMark:HiSpeakerWave ;
+
+    const Icon = isPlaying ? BsPauseFill : BsPlayFill
+    const onPlayNext = () => {
+        if (Player.ids.length === 0) {
+            return;
+        }
+        const currentIndex = Player.ids.findIndex((id) => id === Player.activeId);
+        const nextSong = Player.ids[currentIndex + 1];
+        if (!nextSong) {
+            return Player.setId(Player.ids[0]);
+        }
+        Player.setId(nextSong);
+    }
+    const onPlayPrevious = () => {
+        if (Player.ids.length === 0) {
+            return;
+        }
+        const currentIndex = Player.ids.findIndex((id) => id === Player.activeId);
+        const previousSong = Player.ids[currentIndex - 1];
+        if (!previousSong) {
+            return Player.setId(Player.ids[-1]);
+        }
+        Player.setId(previousSong);
+    }
+    const [play,{pause,sound}] = useSound(songUrl, {
+        volume: volume,
+        onplay: () => setIsPlaying(true),
+        onend: () => {
+            setIsPlaying(false);
+            onPlayNext();
+        },
+        onpause: () => setIsPlaying(false),
+        format: ['mp3', 'aac', 'ogg', 'wav', 'flac'],
+    });
+    useEffect(() => {
+        sound?.play();
+        return () => {
+            sound?.unload();
+        }
+    }, [ sound]);
+    const handlePlay = () => {
+        if (!isPlaying) {
+            play();
+        } else {
+            pause();
+        }
+    }
+    const toggleMute = () => {
+        if (volume === 0) {
+            setVolume(1);
+        } else {
+            setVolume(0);
+        }
+    }
+
+    return (
+        <div className={`grid grid-cols-2 w-full md:grid-cols-3  h-full`}>
+            <div className={'flex items-center w-full justify-start'}>
+                <div className={`flex items-center gap-x-4`}>
+                    <MediaItem data={song}/>
+                    <LikeButton songID={song.id}/>
+                </div>
+            </div>
+            <div className={`flex md:hidden col-auto w-full justify-end items-center `}>
+                <div onClick={()=>{}} className={`h-10 w-10 flex items-center justify-center bg-white rounded-full p-1 cursor-pointer`}>
+                    <Icon size={30} className={'text-black'}></Icon>
+
+                </div>
+            </div>
+            <div className={`hidden h-full md:flex justify-center items-center w-full max-w-[722px] gap-x-6`}>
+                <AiFillStepBackward size={30} className={'text-neutral-400 cursor-pointer hover:text-white transition'} onClick={onPlayPrevious}/>
+                <div>
+                    <div onClick={handlePlay} className={`h-10 w-10 flex items-center justify-center bg-white rounded-full p-1 cursor-pointer`}>
+                        <Icon size={30} className={'text-black'}></Icon>
+                    </div>
+                </div>
+                <AiFillStepForward size={30} className={'text-neutral-400 cursor-pointer hover:text-white transition'} onClick={onPlayNext}/>
+
+            </div>
+            <div className={`hidden md:flex w-full justify-end pr-2`}>
+                    <div onClick ={()=>{}}
+                        className={`flex items-center gap-x-2 w-[120px]`}>
+                        <VolumeIcon onClick={ toggleMute} size={30} className={'cursor-pointer'}/>
+                            <MySlider value ={volume} onChange={(value) => setVolume(value)}/>
+                        </div>
+            </div>
+        </div>
+    );
+}
+
+export default PlayerContent

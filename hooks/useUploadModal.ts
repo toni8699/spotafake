@@ -1,15 +1,15 @@
 import {create } from "zustand";
 
-interface AuthModalState {
+interface UploadModalState {
     isOpen: boolean;
     onOpen: () => void;
     onClose: () => void;
 }
 
-const useAuthModal = create<AuthModalState>((set) => ({
+const useUploadModal = create<UploadModalState>((set) => ({
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
     onClose: () => set({ isOpen: false }),
 }));
 
-export default useAuthModal
+export default useUploadModal

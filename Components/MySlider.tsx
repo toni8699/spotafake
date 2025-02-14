@@ -1,12 +1,12 @@
 "use client "
 
-import { Slider } from "radix-ui";
+import * as Slider from '@radix-ui/react-slider'
 
 interface SliderProps {
     value?: number;
     onChange?: (value: number) => void;
 }
-const Slider: React.FC<SliderProps> = ({
+const MySlider: React.FC<SliderProps> = ({
     value = 1,
     onChange
 }) => {
@@ -14,20 +14,22 @@ const Slider: React.FC<SliderProps> = ({
         onChange?.(newValue[0])
     }
     return (
-        <Slider.Root className="relative flex items-center select-none touch-none h-10"
-        defaultValue={[1]}
-        value={[value]}
-        onValueChange={onValueChange}
-                    aria-label = "Volume"
+        <Slider.Root
+            className="relative flex w-full touch-none select-none items-center"
+            value={[value]}
+            onValueChange={onValueChange}
+            max={1}
+            defaultValue={[0.5]}
+            step={0.1}
+            aria-label="Volume"
         >
-            <Slider.Track className={`bg-red-900 w-full relative grow rounded-full h-[3px]`}>
-                <radix.Range className={`absolute bg-white rounded-full h-full`} />
-
-
-
+            <Slider.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-secondary">
+                <Slider.Range className="absolute h-full bg-white" />
             </Slider.Track>
+            <Slider.Thumb className="block h-3 w-3 rounded-full bg-white shadow focus:outline-none" />
         </Slider.Root>
+
     )
 }
 
-export default Slider
+export default MySlider

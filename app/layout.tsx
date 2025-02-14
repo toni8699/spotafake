@@ -5,6 +5,10 @@ import Sidebar from "@/Components/Sidebar";
 import SupabaseProvider from "@/providers/SupabaseProvider";
 import UserProvider from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
+import ToasterProvider from "@/providers/ToasterProvider";
+import getSongsByUserId from "@/actions/getSongsByUserId";
+import React from "react";
+import Player from "@/Components/Player";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,23 +23,26 @@ export const metadata: Metadata = {
   title: "Spotafake",
   description: "I LVOE MUSIC",
 };
-
-export default function RootLayout({
+export const revalidate = 0;
+export default async function  RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const userSongs = await getSongsByUserId();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+      <ToasterProvider/>
       <SupabaseProvider  >
           <UserProvider>
               <ModalProvider/>
-              <Sidebar>
+              <Sidebar songs ={userSongs}>
                   {children}
               </Sidebar>
+              <Player/>
           </UserProvider>
       </SupabaseProvider>
 
