@@ -8,6 +8,9 @@ import Box from "./Box";
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
 import {Song} from "@/types";
+import usePlayer from "@/hooks/usePlayer";
+import {twMerge} from "tailwind-merge";
+import ProgressBar from "@/Components/ProgressBar";
 interface SidebarProps {
     children : React.ReactNode;
     songs:Song []
@@ -29,8 +32,11 @@ export const Sidebar: React.FC<SidebarProps> = ({children, songs}) => {
             href:'/search'
         }
     ])
+    const player =usePlayer();
     return (
-        <div className={'flex h-full'}>
+        <div className={twMerge(`flex h-full
+        
+        `,player.activeId && ' h-[calc(100%-80px)]')}>
             <div className={'hidden md:flex flex-col' +
                 ' gap-y-2 ' +
                 'bg-black h-full w-[300px] p-2  '}>
@@ -48,7 +54,9 @@ export const Sidebar: React.FC<SidebarProps> = ({children, songs}) => {
                 </Box>
                 <Box className={'overflow-y-auto h-full'}>
                        <Library songs={songs}/>
+                    {/*<ProgressBar/>*/}
                 </Box>
+
             </div>
             <main className={'h-full flex-1 overflow-y-auto py-2'}>
                 {children}
