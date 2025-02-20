@@ -1,5 +1,4 @@
 import React from 'react';
-import { Progress } from "@radix-ui/react-progress";
 
 interface ProgressBarProps {
     currentTime: number;

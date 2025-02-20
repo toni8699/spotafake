@@ -4,7 +4,7 @@ import {RxCaretLeft, RxCaretRight} from "react-icons/rx"
 import {HiHome} from "react-icons/hi"
 import {BiSearch} from "react-icons/bi"
 import Button from "@/Components/Button";
-import Image from "next/image";
+// import Image from "next/image";
 import {useSupabaseClient} from "@supabase/auth-helpers-react";
 import {useUser} from "@/hooks/useUser";
 import {FaUserAlt} from "react-icons/fa";
@@ -22,7 +22,7 @@ export const Header:React.FC<HeaderProps> = ({children,className}) => {
     const router = useRouter();
 
     const supabaseClient = useSupabaseClient();
-    const {user,subscription}=useUser();
+    const {user}=useUser();
     const handleLogout = async () => {
         const { error } = await supabaseClient.auth.signOut();
         router.refresh();

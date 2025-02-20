@@ -37,7 +37,7 @@ export default async function  RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <ToasterProvider/>
-      <SupabaseProvider  >
+      <SupabaseProvider key={userSongs.length}  >
           <UserProvider>
               <ModalProvider/>
               <Sidebar songs ={userSongs}>

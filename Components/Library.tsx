@@ -19,7 +19,7 @@ const Library:React.FC<LibraryProps> = (
         songs
     }) => {
     const authModal = useAuthModal();
-    const {user,subscription } = useUser();
+    const {user } = useUser();
     const uploadModal = useUploadModal();
 
     const onPlay = useOnPlay(songs);
@@ -48,7 +48,7 @@ const Library:React.FC<LibraryProps> = (
                     />
                 </div>
                 <div className={'flex flex-col gap-y-2 mt-7 px-3 text-white'}>
-                    <p className={`text-neutral-400`}>Woah it's empty here, add a song</p>
+                    <p className={`text-neutral-400`}>Woah it&#39;s empty here, add a song</p>
                 </div>
             </div>
         );

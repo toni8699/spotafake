@@ -1,12 +1,13 @@
 import {forwardRef} from "react";
 import {twMerge} from "tailwind-merge";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 
 
 
 
 
+// eslint-disable-next-line react/display-name
 const Input =forwardRef<HTMLInputElement,InputProps>(({
     className,
     type,

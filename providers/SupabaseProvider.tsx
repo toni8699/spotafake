@@ -6,11 +6,11 @@ import {SessionContextProvider} from "@supabase/auth-helpers-react";
 
 interface SupabaseProviderProps {
     children: React.ReactNode;
-    supabase: Database;
+    // supabase: Database;
 }
 const SupabaseProvider: React.FC<SupabaseProviderProps> = ({
     children,
-    supabase,
+    // supabase,
 }) => {
     const [superbaseClient] = useState(()=>
         createClientComponentClient<Database>()
