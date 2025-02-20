@@ -104,7 +104,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     };
 
     return (
-        <div className={twMerge(`fixed bottom-0 z-10 flex flex-col items-center justify-center w-full bg-black h-16`)}>
+        <div className={twMerge(` bottom-0 z-10 flex flex-col items-center justify-center w-full bg-black h-16`)}>
             <div className={` flex items-center gap-x-4 w-full h-1/2`}>
                 <ProgressBar duration={duration} currentTime={currentTime} onSeek={handleSeek}/>
 
