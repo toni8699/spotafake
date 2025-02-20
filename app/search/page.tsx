@@ -3,15 +3,20 @@ import getSongsByTitle from "@/actions/getSongsByTitle"
 import Header from "@/Components/Header";
 import SearchInput from "@/Components/SearchInput";
 import SearchContent from "@/Components/SearchContent";
-interface SearchProps {
-    searchParams: {
-        title: string
-    }
+// interface SearchProps {
+//     searchParams: {
+//         title: string
+//     }
+// }
+type SearchProps = {
+    params: Promise<{ id: string }>
+    searchParams: Promise<{ title: string }>
 }
+
 
 export const revalidate = 0
 const Search = async ({searchParams}:SearchProps) => {
-    const songs = await getSongsByTitle(searchParams.title);
+    const songs = await getSongsByTitle((await searchParams).title);
 
     return (
         <div className={`
