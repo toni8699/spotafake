@@ -17,6 +17,8 @@ interface SidebarProps {
 }
 export const Sidebar: React.FC<SidebarProps> = ({children, songs}) => {
     const pathname=usePathname();
+    // @ts-ignore
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const router =useMemo(()=>[
         {
             icon:HiHome,
