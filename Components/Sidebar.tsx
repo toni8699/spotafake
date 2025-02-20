@@ -10,6 +10,10 @@ import Library from "./Library";
 import {Song} from "@/types";
 import usePlayer from "@/hooks/usePlayer";
 import {twMerge} from "tailwind-merge";
+
+
+
+
 interface SidebarProps {
     children : React.ReactNode;
     songs:Song []

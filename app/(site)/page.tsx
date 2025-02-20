@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
       <div className={'' +
-          'bg-neutral-900 h-full w-full overflow-hidden'}>
+          'bg-neutral-900 overflow-y-scroll'}>
           <Header>
               <div className={'mb-2'}>
                   <h1 className={'text-3xl font-bold text-white'}>

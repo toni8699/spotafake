@@ -8,8 +8,7 @@ import {Song} from "@/types";
 import React from "react";
 import MediaItem from "@/Components/MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
-import LikeButton from "@/Components/LikeButton";
-
+// import LikeButton from "@/Components/LikeButton";
 
 interface LibraryProps {
     songs:Song[]
@@ -21,7 +20,7 @@ const Library:React.FC<LibraryProps> = (
     const authModal = useAuthModal();
     const {user } = useUser();
     const uploadModal = useUploadModal();
-
+    // const router = useRouter();
     const onPlay = useOnPlay(songs);
     const onClick=()=>{
         //add auth
@@ -75,7 +74,7 @@ const Library:React.FC<LibraryProps> = (
                         key={song.id}
                         data={song}
                         />
-                        <LikeButton songID={song.id}/>
+                        {/*<LikeButton songID={song.id}/>*/}
                     </div>
                 ))}
             </div>

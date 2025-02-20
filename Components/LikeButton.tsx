@@ -29,6 +29,7 @@ const LikeButton: React.FC<LikeButtonProps> = ( {songID}) => {
                 .single();
             if(!error && data){
                 setIsLiked(true);
+                router.refresh();
             }
         };
         fetchData();
@@ -48,6 +49,8 @@ const LikeButton: React.FC<LikeButtonProps> = ( {songID}) => {
                 toast.error(error.message);
             } else {
                 setIsLiked(false);
+                router.refresh();
+
             }
         } else {
             const {error} = await supabaseClient
@@ -59,10 +62,14 @@ const LikeButton: React.FC<LikeButtonProps> = ( {songID}) => {
             if (error) {
                 toast.error(error.message);
             } else {
+                toast.success('Liked');
                 setIsLiked(true);
+                router.refresh();
+
+
+            }
         }
-        }
-        router.refresh();
+
     }
 
     return (
