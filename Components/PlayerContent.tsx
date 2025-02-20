@@ -104,7 +104,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     };
 
     return (
-        <div className={twMerge(`flex flex-col items-center justify-center w-full bg-black h-16`)}>
+        <div className={twMerge(`fixed bottom-0 z-10 flex flex-col items-center justify-center w-full bg-black h-16`)}>
             <div className={` flex items-center gap-x-4 w-full h-1/2`}>
                 <ProgressBar duration={duration} currentTime={currentTime} onSeek={handleSeek}/>
 
@@ -118,8 +118,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                     </div>
                 </div>
                 <div className={`flex md:hidden col-auto w-full justify-end items-center `}>
-                    <div onClick={() => {
-                    }}
+                    <div onClick={ handlePlay}
                          className={`h-10 w-10 flex items-center justify-center bg-white rounded-full p-1 cursor-pointer`}>
                         <Icon size={30} className={'text-black'}></Icon>
 

@@ -4,11 +4,17 @@ import ListItem from "@/Components/ListItem";
 import getSongs from "@/actions/getSongs";
 
 import PageContent from "@/Components/PageContent";
+import Error from "@/app/(site)/Error";
+import {useSupabaseClient} from "@supabase/auth-helpers-react";
+import {ReactNode} from "react";
+import Footer from "./Components/Footer";
 export const revalidate = 0;
+
+
 
 export default async function Home() {
     const songs = await getSongs();
-    console.log(songs);
+
   return (
       <div className={'' +
           'bg-neutral-900 h-full w-full overflow-hidden'}>
@@ -22,15 +28,17 @@ export default async function Home() {
                   </div>
               </div>
           </Header>
-          <div className={'px-6 mt-2'}  >
+          <div className={'px-6 mt-2 pb-[200px] h-full overflow-y-auto'}  >
               <div>
                   <h1 className={'text-3xl font-bold text-white'}>
                       New Releases
                   </h1>
               </div>
-             <PageContent songs={songs}/>
-
+              <div className={`m-4 scroll-pb-72 h-full`}>
+                  <PageContent songs={songs}/>
+              </div>
           </div>
+
       </div>
 
   );

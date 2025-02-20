@@ -25,7 +25,7 @@ const LikedContent  : React.FC<LikedContentProps> = ({
     if (song.length ===0){
         return (
             <div className={'flex flex-col gap-y-2 w-full px-6 text-neutral-400'}>
-                Woah it's empty here, go like something !
+                Woah it&#39;s empty here, go like something !
             </div>
         )
     }

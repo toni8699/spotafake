@@ -23,7 +23,7 @@ const MySlider: React.FC<SliderProps> = ({
             step={0.1}
             aria-label="Volume"
         >
-            <Slider.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-secondary">
+            <Slider.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-neutral-500 bg-secondary">
                 <Slider.Range className="absolute h-full bg-white" />
             </Slider.Track>
             <Slider.Thumb className="block h-3 w-3 rounded-full bg-white shadow focus:outline-none" />

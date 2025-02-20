@@ -26,7 +26,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentTime, duration, onSeek
     return (
         <div className="w-full cursor-pointer flex-row flex justify-between px-4 items-center">
             <span className="text-white mr-2">{formatTime(currentTime)}</span>
-            <div className="w-full bg-gray-300 h-1 rounded" onClick={handleClick}>
+            <div className="w-full bg-neutral-500 h-1 rounded" onClick={handleClick}>
                 <div
                     className="bg-blue-500 h-1 rounded"
                     style={{ width: `${progress}%` }}
