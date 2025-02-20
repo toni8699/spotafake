@@ -4,10 +4,6 @@ import ListItem from "@/Components/ListItem";
 import getSongs from "@/actions/getSongs";
 
 import PageContent from "@/Components/PageContent";
-import Error from "@/app/(site)/Error";
-import {useSupabaseClient} from "@supabase/auth-helpers-react";
-import {ReactNode} from "react";
-import Footer from "./Components/Footer";
 export const revalidate = 0;
 
 

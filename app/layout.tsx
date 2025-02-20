@@ -9,7 +9,6 @@ import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/actions/getSongsByUserId";
 import React from "react";
 import Player from "@/Components/Player";
-import Error from "@/app/(site)/Error";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
